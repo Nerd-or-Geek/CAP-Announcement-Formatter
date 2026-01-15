@@ -1,0 +1,18 @@
+<div class="widget alert-widget" style="background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%); border-left: 5px solid #BA0C2F; padding: 25px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); page-break-inside: avoid;">
+    <h3 style="color: #001489; font-size: 1.4em; font-weight: 700; margin: 0 0 15px 0; display: flex; align-items: center; flex-wrap: wrap; gap: 10px;">
+        🚨 {{title}}
+    </h3>
+    <div style="display: inline-block; padding: 8px 16px; background: linear-gradient(135deg, #BA0C2F 0%, #d41440 100%); color: white; border-radius: 6px; font-weight: 600; margin-bottom: 15px; font-size: 0.9em;">
+        SEVERITY: {{severity}}
+    </div>
+    <div style="margin: 10px 0; font-size: 0.95em;"><strong style="color: #555; font-weight: 600; min-width: 150px; display: inline-block;">Effective Date/Time:</strong> {{effectiveDate}}</div>
+    <div style="margin-top: 15px; padding: 15px; background-color: white; border: 2px solid #BA0C2F; border-radius: 5px; margin-bottom: 15px;">
+        <div style="font-weight: 600; color: #BA0C2F; margin-bottom: 10px; text-transform: uppercase; font-size: 0.95em;">Message:</div>
+        <p style="margin: 0; white-space: pre-wrap; line-height: 1.6; color: #333;">{{message}}</p>
+    </div>
+    <div style="padding: 15px; background: linear-gradient(135deg, #fff9e6 0%, #fffbea 100%); border-left: 3px solid #FFCD00; border-radius: 5px; margin-bottom: 15px;">
+        <div style="font-weight: 600; color: #f39c12; margin-bottom: 10px;">⚡ ACTION REQUIRED:</div>
+        <p style="margin: 0; white-space: pre-wrap; line-height: 1.6; color: #333;">{{actionRequired}}</p>
+    </div>
+    <div style="font-size: 0.95em; color: #555;"><strong style="font-weight: 600;">Contact:</strong> {{contact}}</div>
+</div>

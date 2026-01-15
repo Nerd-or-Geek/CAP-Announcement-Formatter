@@ -1,0 +1,45 @@
+{
+  "id": "event_meeting",
+  "displayName": "Meeting Event",
+  "category": "Events",
+  "description": "Squadron meeting with date, time, location, and details",
+  "template": "meeting.html",
+  "requiredLevel": "Beginner",
+  "fields": [
+    {
+      "id": "title",
+      "label": "Meeting Title",
+      "type": "text",
+      "placeholder": "e.g., Emergency Services Meeting",
+      "defaultValue": "Squadron Meeting"
+    },
+    {
+      "id": "date",
+      "label": "Date",
+      "type": "text",
+      "placeholder": "e.g., 15 December",
+      "defaultValue": ""
+    },
+    {
+      "id": "time",
+      "label": "Time",
+      "type": "text",
+      "placeholder": "e.g., 7:00 PM",
+      "defaultValue": ""
+    },
+    {
+      "id": "location",
+      "label": "Location",
+      "type": "text",
+      "placeholder": "e.g., EKX Airport",
+      "defaultValue": ""
+    },
+    {
+      "id": "details",
+      "label": "Details",
+      "type": "textarea",
+      "placeholder": "Additional meeting details",
+      "defaultValue": ""
+    }
+  ]
+}

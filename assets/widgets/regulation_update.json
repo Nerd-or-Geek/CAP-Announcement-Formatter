@@ -1,0 +1,59 @@
+{
+  "id": "regulation_update",
+  "displayName": "Regulation Update",
+  "category": "Regulations",
+  "description": "Policy or regulation change announcement",
+  "template": "regulation.html",
+  "requiredLevel": "Intermediate",
+  "fields": [
+    {
+      "id": "regulationNumber",
+      "label": "Regulation Number",
+      "type": "text",
+      "placeholder": "e.g., CAP-REG 50-1",
+      "defaultValue": ""
+    },
+    {
+      "id": "title",
+      "label": "Title",
+      "type": "text",
+      "placeholder": "Regulation title",
+      "defaultValue": "Regulation Update"
+    },
+    {
+      "id": "effectiveDate",
+      "label": "Effective Date",
+      "type": "text",
+      "placeholder": "When regulation takes effect",
+      "defaultValue": ""
+    },
+    {
+      "id": "authorityName",
+      "label": "Issuing Authority",
+      "type": "text",
+      "placeholder": "Who issued this regulation",
+      "defaultValue": ""
+    },
+    {
+      "id": "summary",
+      "label": "Summary",
+      "type": "textarea",
+      "placeholder": "Brief summary of changes",
+      "defaultValue": ""
+    },
+    {
+      "id": "details",
+      "label": "Detailed Changes",
+      "type": "textarea",
+      "placeholder": "Full details of the regulation",
+      "defaultValue": ""
+    },
+    {
+      "id": "references",
+      "label": "References",
+      "type": "textarea",
+      "placeholder": "Related regulations or documents",
+      "defaultValue": ""
+    }
+  ]
+}

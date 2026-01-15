@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Document Id="example-001" Title="Weekly Briefing - January 2026" CreatedAt="2026-01-12T10:00:00.0000000-05:00" ModifiedAt="2026-01-12T10:15:00.0000000-05:00">
+  <Metadata>
+    <Property Key="Author" Value="System Administrator" />
+    <Property Key="Department" Value="Operations" />
+  </Metadata>
+  <Widgets>
+    <Widget Id="widget-001" DefinitionId="meeting_basic" Order="0" CreatedAt="2026-01-12T10:00:00.0000000-05:00" ModifiedAt="2026-01-12T10:05:00.0000000-05:00">
+      <Field Name="title"><![CDATA[Weekly Team Briefing]]></Field>
+      <Field Name="date"><![CDATA[2026-01-15]]></Field>
+      <Field Name="time"><![CDATA[09:00 - 10:00]]></Field>
+      <Field Name="location"><![CDATA[Headquarters Conference Room A]]></Field>
+      <Field Name="details"><![CDATA[Topics to be covered:
+- Q1 objectives review
+- New safety protocols
+- Equipment updates
+- Team announcements
+
+Please bring any questions or concerns for discussion.]]></Field>
+      <Field Name="attendanceRequired"><![CDATA[true]]></Field>
+    </Widget>
+    <Widget Id="widget-002" DefinitionId="alert_important" Order="1" CreatedAt="2026-01-12T10:10:00.0000000-05:00" ModifiedAt="2026-01-12T10:12:00.0000000-05:00">
+      <Field Name="title"><![CDATA[Network Maintenance Scheduled]]></Field>
+      <Field Name="severity"><![CDATA[Warning]]></Field>
+      <Field Name="effectiveDate"><![CDATA[2026-01-20T23:00:00]]></Field>
+      <Field Name="message"><![CDATA[The IT department will be performing critical network infrastructure upgrades. All network services will be temporarily unavailable during this maintenance window.]]></Field>
+      <Field Name="actionRequired"><![CDATA[- Save all work before 23:00
+- Log off network systems
+- Plan offline activities for the maintenance period
+- Report any issues after maintenance completion]]></Field>
+      <Field Name="contact"><![CDATA[IT Help Desk - ext. 4357 or helpdesk@example.mil]]></Field>
+    </Widget>
+    <Widget Id="widget-003" DefinitionId="info_card" Order="2" CreatedAt="2026-01-12T10:13:00.0000000-05:00" ModifiedAt="2026-01-12T10:15:00.0000000-05:00">
+      <Field Name="title"><![CDATA[Holiday Schedule Reminder]]></Field>
+      <Field Name="content"><![CDATA[Please note the upcoming holiday schedule:
+
+- Martin Luther King Jr. Day: Monday, January 20th - Facility Closed
+- President's Day: Monday, February 17th - Facility Closed
+
+Emergency contact procedures remain in effect during closure periods. Refer to your department SOPs for emergency protocols.]]></Field>
+      <Field Name="date"><![CDATA[2026-01-12]]></Field>
+    </Widget>
+  </Widgets>
+</Document>

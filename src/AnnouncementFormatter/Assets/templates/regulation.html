@@ -1,0 +1,29 @@
+<div class="widget-card" style="border-left: 5px solid #1B5E20; padding: 20px; margin: 15px 0; background: linear-gradient(to right, rgba(27,94,32,0.05), transparent); border-radius: 4px;">
+  <h4 style="color: #1B5E20; margin: 0 0 10px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">
+    Regulation {{number}}
+  </h4>
+  <h3 style="color: #001489; margin: 10px 0 15px 0;">{{title}}</h3>
+  
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; font-size: 13px;">
+    <div style="background: white; padding: 10px; border-left: 3px solid #FFCD00; border-radius: 2px;">
+      <strong style="color: #666;">Effective Date</strong><br>
+      <span style="color: #333;">{{effectiveDate}}</span>
+    </div>
+    <div style="background: white; padding: 10px; border-left: 3px solid #FFCD00; border-radius: 2px;">
+      <strong style="color: #666;">Regulation #</strong><br>
+      <span style="color: #333;">{{number}}</span>
+    </div>
+  </div>
+
+  <div style="background: #F5F5F5; padding: 15px; border-radius: 4px; margin-bottom: 15px;">
+    <strong style="color: #001489;">Summary</strong><br>
+    <span style="color: #333; line-height: 1.6;">{{summary}}</span>
+  </div>
+
+  {{#if details}}
+  <div style="background: white; padding: 15px; border: 1px solid #ddd; border-radius: 4px;">
+    <strong style="color: #001489;">Details</strong><br>
+    <span style="color: #333; line-height: 1.6;">{{details}}</span>
+  </div>
+  {{/if}}
+</div>

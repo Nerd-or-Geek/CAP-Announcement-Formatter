@@ -1,0 +1,34 @@
+{
+  "id": "opportunity",
+  "displayName": "Opportunity",
+  "category": "Programs",
+  "description": "Ongoing program or opportunity",
+  "template": "info.html",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "id": "title",
+      "label": "Title",
+      "type": "String",
+      "placeholder": "Program or opportunity title",
+      "defaultValue": "Cadet Training Program",
+      "required": true
+    },
+    {
+      "id": "content",
+      "label": "Description",
+      "type": "Multiline",
+      "placeholder": "Details about the opportunity",
+      "defaultValue": "Join our ongoing cadet training program.",
+      "required": true
+    },
+    {
+      "id": "contact",
+      "label": "Contact Information",
+      "type": "String",
+      "placeholder": "Name or email",
+      "defaultValue": "Wing Training Officer",
+      "required": false
+    }
+  ]
+}

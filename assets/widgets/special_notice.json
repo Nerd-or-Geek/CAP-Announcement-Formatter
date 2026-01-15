@@ -1,0 +1,31 @@
+{
+  "id": "special_notice",
+  "displayName": "Special Notice",
+  "category": "Notices",
+  "description": "Special notice like cancellations or holidays",
+  "template": "info.html",
+  "requiredLevel": "Beginner",
+  "fields": [
+    {
+      "id": "title",
+      "label": "Notice Title",
+      "type": "text",
+      "placeholder": "e.g., Holiday Schedule",
+      "defaultValue": "Special Notice"
+    },
+    {
+      "id": "content",
+      "label": "Notice Details",
+      "type": "textarea",
+      "placeholder": "Details of the special notice",
+      "defaultValue": ""
+    },
+    {
+      "id": "date",
+      "label": "Date/Period",
+      "type": "text",
+      "placeholder": "When this applies",
+      "defaultValue": ""
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "id": "alert",
+  "displayName": "Alert",
+  "category": "Notices",
+  "description": "Important alert or notice",
+  "template": "alert.html",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "id": "severity",
+      "label": "Severity Level",
+      "type": "Dropdown",
+      "placeholder": "Select severity",
+      "defaultValue": "Important",
+      "required": true,
+      "options": ["Low", "Medium", "Important", "Critical"]
+    },
+    {
+      "id": "title",
+      "label": "Alert Title",
+      "type": "String",
+      "placeholder": "Short alert title",
+      "defaultValue": "Important Notice",
+      "required": true
+    },
+    {
+      "id": "message",
+      "label": "Message",
+      "type": "Multiline",
+      "placeholder": "Alert message content",
+      "defaultValue": "This is an important alert.",
+      "required": true
+    },
+    {
+      "id": "action",
+      "label": "Required Action",
+      "type": "Multiline",
+      "placeholder": "What action should members take?",
+      "defaultValue": "Please acknowledge receipt of this notice.",
+      "required": false
+    }
+  ]
+}

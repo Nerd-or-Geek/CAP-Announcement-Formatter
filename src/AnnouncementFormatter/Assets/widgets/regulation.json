@@ -1,0 +1,50 @@
+{
+  "id": "regulation",
+  "displayName": "Regulation",
+  "category": "Policy",
+  "description": "Policy or regulation change",
+  "template": "regulation.html",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "id": "number",
+      "label": "Regulation Number",
+      "type": "String",
+      "placeholder": "e.g., CAP 60-1",
+      "defaultValue": "CAP 60-1",
+      "required": true
+    },
+    {
+      "id": "title",
+      "label": "Title",
+      "type": "String",
+      "placeholder": "Regulation title",
+      "defaultValue": "Organization and Functions",
+      "required": true
+    },
+    {
+      "id": "effectiveDate",
+      "label": "Effective Date",
+      "type": "Date",
+      "placeholder": "Select effective date",
+      "defaultValue": "2024-12-15",
+      "required": true
+    },
+    {
+      "id": "summary",
+      "label": "Summary",
+      "type": "Multiline",
+      "placeholder": "Brief summary of the regulation",
+      "defaultValue": "Summary of regulatory changes.",
+      "required": true
+    },
+    {
+      "id": "details",
+      "label": "Details",
+      "type": "Multiline",
+      "placeholder": "Detailed explanation",
+      "defaultValue": "Detailed regulatory information.",
+      "required": false
+    }
+  ]
+}

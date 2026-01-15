@@ -1,0 +1,59 @@
+{
+  "id": "alert_important",
+  "displayName": "Important Alert",
+  "category": "Alerts",
+  "description": "High-priority alert or warning announcement",
+  "icon": "alert.png",
+  "template": "alert.html",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "id": "title",
+      "type": "String",
+      "label": "Alert Title",
+      "required": true,
+      "placeholder": "e.g., System Maintenance Notice",
+      "helpText": "Enter a clear, attention-grabbing title"
+    },
+    {
+      "id": "severity",
+      "type": "Dropdown",
+      "label": "Severity Level",
+      "required": true,
+      "defaultValue": "Warning",
+      "options": ["Info", "Warning", "Critical"],
+      "helpText": "Select the appropriate severity level"
+    },
+    {
+      "id": "effectiveDate",
+      "type": "DateTime",
+      "label": "Effective Date/Time",
+      "required": true,
+      "helpText": "When does this alert take effect?"
+    },
+    {
+      "id": "message",
+      "type": "Multiline",
+      "label": "Alert Message",
+      "required": true,
+      "placeholder": "Describe the alert in detail...",
+      "helpText": "Provide comprehensive information about the alert"
+    },
+    {
+      "id": "actionRequired",
+      "type": "Multiline",
+      "label": "Action Required",
+      "required": false,
+      "placeholder": "What should personnel do?",
+      "helpText": "Specify any actions that need to be taken"
+    },
+    {
+      "id": "contact",
+      "type": "String",
+      "label": "Contact Information",
+      "required": false,
+      "placeholder": "e.g., ext. 1234 or email@example.com",
+      "helpText": "Who to contact for questions"
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AnnouncementFormatter.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="400"
+        x:Class="AnnouncementFormatter.Views.OllamaSetupWindow"
+        x:DataType="vm:OllamaSetupViewModel"
+        Title="AI Assistant Setup"
+        Width="500" Height="400"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False">
+
+    <Design.DataContext>
+        <vm:OllamaSetupViewModel/>
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto,*,Auto" Margin="20">
+        
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#001489" Padding="15" CornerRadius="4" Margin="0,0,0,20">
+            <StackPanel>
+                <TextBlock Text="🤖 AI Formatting Assistant" FontSize="18" FontWeight="Bold" 
+                           Foreground="White" HorizontalAlignment="Center"/>
+                <TextBlock Text="Improve your announcements with local AI" FontSize="12" 
+                           Foreground="#FFCD00" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Content -->
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Spacing="15">
+                
+                <!-- Status Section -->
+                <Border Background="#F8F9FA" Padding="15" CornerRadius="4" BorderBrush="#DEE2E6" BorderThickness="1">
+                    <StackPanel Spacing="10">
+                        <TextBlock Text="System Status" FontSize="14" FontWeight="Bold" Foreground="#001489"/>
+                        
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="Ollama Installed:" FontSize="12" Width="120"/>
+                            <TextBlock Text="{Binding OllamaStatus}" FontSize="12" FontWeight="Bold" 
+                                       Foreground="{Binding OllamaStatusColor}"/>
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="System RAM:" FontSize="12" Width="120"/>
+                            <TextBlock Text="{Binding SystemRam}" FontSize="12"/>
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="Recommended:" FontSize="12" Width="120"/>
+                            <TextBlock Text="{Binding RecommendedLevel}" FontSize="12" FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Model Selection -->
+                <Border Background="White" Padding="15" CornerRadius="4" BorderBrush="#DEE2E6" BorderThickness="1"
+                        IsVisible="{Binding ShowModelSelection}">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Choose AI Model Quality" FontSize="14" FontWeight="Bold" Foreground="#001489"/>
+                        <TextBlock Text="Higher quality models are more accurate but slower." 
+                                   FontSize="11" Foreground="#6C757D" TextWrapping="Wrap"/>
+                        
+                        <!-- Good/Fast Option -->
+                        <RadioButton GroupName="ModelQuality" 
+                                     IsChecked="{Binding IsGoodSelected}"
+                                     Background="White" Padding="10">
+                            <StackPanel>
+                                <TextBlock Text="✨ Good / Fast" FontSize="13" FontWeight="Bold" Foreground="#27AE60"/>
+                                <TextBlock Text="• 3B model (~2GB download)" FontSize="11" Foreground="#6C757D"/>
+                                <TextBlock Text="• 2-3 seconds per improvement" FontSize="11" Foreground="#6C757D"/>
+                                <TextBlock Text="• Requires 4GB RAM" FontSize="11" Foreground="#6C757D"/>
+                            </StackPanel>
+                        </RadioButton>
+
+                        <!-- Better/Medium Option -->
+                        <RadioButton GroupName="ModelQuality" 
+                                     IsChecked="{Binding IsBetterSelected}"
+                                     Background="White" Padding="10">
+                            <StackPanel>
+                                <TextBlock Text="⚡ Better / Medium" FontSize="13" FontWeight="Bold" Foreground="#3498DB"/>
+                                <TextBlock Text="• 8B model (~4.7GB download)" FontSize="11" Foreground="#6C757D"/>
+                                <TextBlock Text="• 5-8 seconds per improvement" FontSize="11" Foreground="#6C757D"/>
+                                <TextBlock Text="• Requires 8GB RAM" FontSize="11" Foreground="#6C757D"/>
+                            </StackPanel>
+                        </RadioButton>
+
+                        <!-- Best/Slow Option -->
+                        <RadioButton GroupName="ModelQuality" 
+                                     IsChecked="{Binding IsBestSelected}"
+                                     Background="White" Padding="10"
+                                     IsEnabled="{Binding CanUseBestModel}">
+                            <StackPanel>
+                                <TextBlock Text="🚀 Best / Slow" FontSize="13" FontWeight="Bold" Foreground="#E67E22"/>
+                                <TextBlock Text="• 70B model (~39GB download)" FontSize="11" Foreground="#6C757D"/>
+                                <TextBlock Text="• 20-30 seconds per improvement" FontSize="11" Foreground="#6C757D"/>
+                                <TextBlock Text="• Requires 64GB RAM" FontSize="11" Foreground="#6C757D"/>
+                                <TextBlock Text="⚠️ Not recommended for your system" FontSize="10" 
+                                           Foreground="#E74C3C" IsVisible="{Binding !CanUseBestModel}"/>
+                            </StackPanel>
+                        </RadioButton>
+                    </StackPanel>
+                </Border>
+
+                <!-- Download Section -->
+                <Border Background="#FFF3CD" Padding="15" CornerRadius="4" BorderBrush="#FFE69C" BorderThickness="1"
+                        IsVisible="{Binding ShowDownloadSection}">
+                    <StackPanel Spacing="10">
+                        <TextBlock Text="⚠️ Ollama Not Installed" FontSize="13" FontWeight="Bold" Foreground="#856404"/>
+                        <TextBlock Text="Ollama is required to use AI features. Click below to download and install it." 
+                                   FontSize="11" Foreground="#856404" TextWrapping="Wrap"/>
+                        <Button Content="🌐 Download Ollama" Command="{Binding DownloadOllamaCommand}"
+                                Background="#FFC107" Foreground="White" Padding="12,8" CornerRadius="4"
+                                HorizontalAlignment="Left" FontWeight="Bold"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Progress Section -->
+                <Border Background="#E8F4F8" Padding="15" CornerRadius="4" BorderBrush="#BEE5EB" BorderThickness="1"
+                        IsVisible="{Binding ShowProgress}">
+                    <StackPanel Spacing="10">
+                        <TextBlock Text="{Binding ProgressMessage}" FontSize="12" FontWeight="SemiBold" Foreground="#004085"/>
+                        <ProgressBar IsIndeterminate="{Binding IsProgressIndeterminate}" 
+                                     Value="{Binding ProgressValue}" 
+                                     Height="8" CornerRadius="4"/>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Footer Buttons -->
+        <Border Grid.Row="2" BorderBrush="#DEE2E6" BorderThickness="0,1,0,0" Padding="0,15,0,0" Margin="0,20,0,0">
+            <Grid ColumnDefinitions="*,Auto,Auto">
+                <Button Grid.Column="1" Content="Setup AI" Command="{Binding SetupCommand}"
+                        IsEnabled="{Binding CanSetup}"
+                        Background="#27AE60" Foreground="White" Padding="20,10" 
+                        CornerRadius="4" FontWeight="Bold" Margin="0,0,10,0"/>
+                <Button Grid.Column="2" Content="Cancel" Click="OnCancelClicked"
+                        Background="#95A5A6" Foreground="White" Padding="20,10" 
+                        CornerRadius="4" FontWeight="Bold"/>
+            </Grid>
+        </Border>
+
+    </Grid>
+</Window>

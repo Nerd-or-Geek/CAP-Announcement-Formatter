@@ -1,0 +1,15 @@
+<div class="widget-card" style="border-left: 5px solid #BA0C2F; padding: 20px; margin: 15px 0; background: linear-gradient(to right, rgba(186,12,47,0.05), transparent); border-radius: 4px;">
+  <h3 style="color: #BA0C2F; margin-top: 0; margin-bottom: 10px;">{{title}}</h3>
+  <div style="background-color: #FFF3CD; padding: 12px; margin-bottom: 15px; border-radius: 4px; border-left: 3px solid #FFCD00;">
+    <strong style="color: #BA0C2F;">Severity: {{severity}}</strong>
+  </div>
+  <div style="margin-bottom: 15px; color: #333;">
+    {{message}}
+  </div>
+  {{#if action}}
+  <div style="background-color: #FFF9E6; padding: 12px; border-left: 3px solid #FFCD00; border-radius: 4px;">
+    <strong style="color: #BA0C2F;">Required Action:</strong><br>
+    <span style="color: #333;">{{action}}</span>
+  </div>
+  {{/if}}
+</div>

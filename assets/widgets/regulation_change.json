@@ -1,0 +1,67 @@
+{
+  "id": "regulation_change",
+  "displayName": "Regulation Change",
+  "category": "Regulations",
+  "description": "Formal regulation or policy change announcement",
+  "icon": "regulation.png",
+  "template": "regulation.html",
+  "version": "1.0.0",
+  "allowedModes": ["Intermediate", "Expert"],
+  "fields": [
+    {
+      "id": "regulationNumber",
+      "type": "String",
+      "label": "Regulation Number",
+      "required": true,
+      "placeholder": "e.g., REG-2026-001",
+      "helpText": "Official regulation identifier"
+    },
+    {
+      "id": "title",
+      "type": "String",
+      "label": "Title",
+      "required": true,
+      "placeholder": "e.g., Updated Safety Protocols",
+      "helpText": "Official title of the regulation"
+    },
+    {
+      "id": "effectiveDate",
+      "type": "Date",
+      "label": "Effective Date",
+      "required": true,
+      "helpText": "When does this regulation take effect?"
+    },
+    {
+      "id": "summary",
+      "type": "Multiline",
+      "label": "Summary",
+      "required": true,
+      "placeholder": "Brief summary of changes...",
+      "helpText": "High-level overview of the regulation"
+    },
+    {
+      "id": "details",
+      "type": "Multiline",
+      "label": "Detailed Changes",
+      "required": true,
+      "placeholder": "Complete description of changes...",
+      "helpText": "Comprehensive details of the regulation"
+    },
+    {
+      "id": "references",
+      "type": "Multiline",
+      "label": "References",
+      "required": false,
+      "placeholder": "Related documents, policies, etc.",
+      "helpText": "Citations and references"
+    },
+    {
+      "id": "authorityName",
+      "type": "String",
+      "label": "Issuing Authority",
+      "required": true,
+      "placeholder": "e.g., Commander, Operations Division",
+      "helpText": "Who issued this regulation?"
+    }
+  ]
+}

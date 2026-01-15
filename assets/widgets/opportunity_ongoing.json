@@ -1,0 +1,31 @@
+{
+  "id": "opportunity_ongoing",
+  "displayName": "Ongoing Opportunity",
+  "category": "Opportunities",
+  "description": "Ongoing program or opportunity announcement",
+  "template": "info.html",
+  "requiredLevel": "Beginner",
+  "fields": [
+    {
+      "id": "title",
+      "label": "Opportunity Title",
+      "type": "text",
+      "placeholder": "e.g., sUAS Course - Ongoing",
+      "defaultValue": "Ongoing Opportunity"
+    },
+    {
+      "id": "content",
+      "label": "Description",
+      "type": "textarea",
+      "placeholder": "Details about the opportunity",
+      "defaultValue": ""
+    },
+    {
+      "id": "date",
+      "label": "Availability",
+      "type": "text",
+      "placeholder": "e.g., Open to All Members",
+      "defaultValue": ""
+    }
+  ]
+}

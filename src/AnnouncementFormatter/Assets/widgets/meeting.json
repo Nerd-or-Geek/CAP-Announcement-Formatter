@@ -1,0 +1,50 @@
+{
+  "id": "meeting",
+  "displayName": "Meeting",
+  "category": "Events",
+  "description": "Event meeting announcement",
+  "template": "meeting.html",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "id": "title",
+      "label": "Meeting Title",
+      "type": "String",
+      "placeholder": "Enter meeting title",
+      "defaultValue": "Wing Staff Meeting",
+      "required": true
+    },
+    {
+      "id": "date",
+      "label": "Date",
+      "type": "Date",
+      "placeholder": "Select date",
+      "defaultValue": "2024-12-15",
+      "required": true
+    },
+    {
+      "id": "time",
+      "label": "Time",
+      "type": "String",
+      "placeholder": "e.g., 10:00 AM",
+      "defaultValue": "10:00 AM",
+      "required": true
+    },
+    {
+      "id": "location",
+      "label": "Location",
+      "type": "String",
+      "placeholder": "Building and room number",
+      "defaultValue": "HQ Conference Room",
+      "required": true
+    },
+    {
+      "id": "details",
+      "label": "Details",
+      "type": "Multiline",
+      "placeholder": "Additional meeting details",
+      "defaultValue": "Join us for important discussions and updates.",
+      "required": false
+    }
+  ]
+}

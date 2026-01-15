@@ -1,0 +1,34 @@
+{
+  "id": "announcement",
+  "displayName": "Announcement",
+  "category": "General",
+  "description": "General announcement with title and content",
+  "template": "info.html",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "id": "title",
+      "label": "Title",
+      "type": "String",
+      "placeholder": "Announcement title",
+      "defaultValue": "Important Announcement",
+      "required": true
+    },
+    {
+      "id": "content",
+      "label": "Content",
+      "type": "Multiline",
+      "placeholder": "Enter announcement content",
+      "defaultValue": "This is an important announcement for all members.",
+      "required": true
+    },
+    {
+      "id": "date",
+      "label": "Date",
+      "type": "Date",
+      "placeholder": "Select date",
+      "defaultValue": "2024-12-15",
+      "required": false
+    }
+  ]
+}

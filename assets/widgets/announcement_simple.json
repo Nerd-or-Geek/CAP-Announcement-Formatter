@@ -1,0 +1,31 @@
+{
+  "id": "announcement_simple",
+  "displayName": "Simple Announcement",
+  "category": "Announcements",
+  "description": "General announcement card with title and content",
+  "template": "info.html",
+  "requiredLevel": "Beginner",
+  "fields": [
+    {
+      "id": "title",
+      "label": "Announcement Title",
+      "type": "text",
+      "placeholder": "e.g., General Squadron Information",
+      "defaultValue": "Important Announcement"
+    },
+    {
+      "id": "content",
+      "label": "Content",
+      "type": "textarea",
+      "placeholder": "Announcement details",
+      "defaultValue": ""
+    },
+    {
+      "id": "date",
+      "label": "Date",
+      "type": "text",
+      "placeholder": "e.g., January 12, 2026",
+      "defaultValue": ""
+    }
+  ]
+}

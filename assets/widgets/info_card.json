@@ -1,0 +1,35 @@
+{
+  "id": "info_card",
+  "displayName": "Information Card",
+  "category": "General",
+  "description": "General information announcement",
+  "icon": "info.png",
+  "template": "info.html",
+  "version": "1.0.0",
+  "allowedModes": ["Beginner", "Intermediate", "Expert"],
+  "fields": [
+    {
+      "id": "title",
+      "type": "String",
+      "label": "Title",
+      "required": true,
+      "placeholder": "e.g., New Policy Update",
+      "helpText": "Brief, descriptive title"
+    },
+    {
+      "id": "content",
+      "type": "Multiline",
+      "label": "Content",
+      "required": true,
+      "placeholder": "Enter your message here...",
+      "helpText": "Main content of the announcement"
+    },
+    {
+      "id": "date",
+      "type": "Date",
+      "label": "Date",
+      "required": false,
+      "helpText": "Optional date reference"
+    }
+  ]
+}

@@ -1,0 +1,239 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AnnouncementFormatter.ViewModels"
+        xmlns:controls="using:AnnouncementFormatter.Controls"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
+        x:Class="AnnouncementFormatter.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="{Binding Title}"
+        Width="1200" Height="800"
+        WindowStartupLocation="CenterScreen">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto,Auto,*">
+        
+        <!-- Top Menu Bar -->
+        <Border Grid.Row="0" Background="#001489" Padding="15">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                
+                <!-- Left: File Operations -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8">
+                    <Button Content="New" Command="{Binding CreateNewDocumentCommand}" 
+                            Background="#3498DB" Foreground="White" Padding="15,8" FontWeight="Bold" CornerRadius="4"/>
+                    <Button Content="Open" Click="OnOpenDocumentClicked"
+                            Background="#3498DB" Foreground="White" Padding="15,8" FontWeight="Bold" CornerRadius="4"/>
+                    <Button Content="Save" Command="{Binding SaveDocumentCommand}" 
+                            Background="#27AE60" Foreground="White" Padding="15,8" FontWeight="Bold" CornerRadius="4"/>
+                    <Button Content="Export HTML" Command="{Binding ExportToHtmlCommand}" 
+                            IsVisible="{Binding CanExportHtml}"
+                            Background="#E67E22" Foreground="White" Padding="15,8" FontWeight="Bold" CornerRadius="4"/>                    <Separator Width="1" Background="#FFFFFF" Opacity="0.3" Margin="5,0"/>
+                    <Button Content="+ New Widget" Command="{Binding CreateWidgetCommand}"
+                            IsVisible="{Binding CanCreateWidgets}"
+                            Background="#16A085" Foreground="White" Padding="15,8" FontWeight="Bold" CornerRadius="4"/>
+                    <Separator Width="1" Background="#FFFFFF" Opacity="0.3" Margin="5,0"/>
+                    <Button Content="🤖 Setup AI" Command="{Binding SetupAICommand}"
+                            IsVisible="{Binding !IsAiEnabled}"
+                            Background="#9B59B6" Foreground="White" Padding="15,8" FontWeight="Bold" CornerRadius="4"/>
+                    <Button Content="✨ Improve with AI" Command="{Binding ImproveWithAICommand}"
+                            IsVisible="{Binding IsAiEnabled}"
+                            IsEnabled="{Binding SelectedWidget, Converter={x:Static ObjectConverters.IsNotNull}}"
+                            Background="#9B59B6" Foreground="White" Padding="15,8" FontWeight="Bold" CornerRadius="4"/>
+                </StackPanel>
+
+                <!-- Center: Title -->
+                <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" Spacing="5">
+                    <TextBox Text="{Binding CurrentDocument.Title}" 
+                             FontSize="14" FontWeight="Bold" Foreground="White"
+                             Background="Transparent" BorderThickness="0" Padding="8,4"
+                             Watermark="Document Title"
+                             HorizontalAlignment="Center" TextAlignment="Center" MinWidth="250"/>
+                    <TextBox Text="{Binding CurrentDocument.Subtitle}" 
+                             FontSize="11" Foreground="#FFCD00"
+                             Background="Transparent" BorderThickness="0" Padding="4,2"
+                             Watermark="Subtitle"
+                             HorizontalAlignment="Center" TextAlignment="Center" MinWidth="250"/>
+                </StackPanel>
+
+                <!-- Right: Mode Switcher -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="5">
+                    <TextBlock Text="{Binding AiStatus}" Foreground="#FFCD00" VerticalAlignment="Center" 
+                               Margin="0,0,10,0" FontSize="11" FontWeight="SemiBold"
+                               IsVisible="{Binding IsAiEnabled}"/>
+                    <Separator Width="1" Background="#FFFFFF" Opacity="0.3" Margin="5,0" IsVisible="{Binding IsAiEnabled}"/>
+                    <TextBlock Text="Mode:" Foreground="White" VerticalAlignment="Center" Margin="0,0,5,0" FontWeight="Bold"/>
+                    <Button Content="Beginner" 
+                            Click="OnBeginnerModeClicked"
+                            Background="#27AE60"
+                            Foreground="White" Padding="10,6" FontSize="12"/>
+                    <Button Content="Intermediate" 
+                            Click="OnIntermediateModeClicked"
+                            Background="#F39C12"
+                            Foreground="White" Padding="10,6" FontSize="12"/>
+                    <Button Content="Expert" 
+                            Click="OnExpertModeClicked"
+                            Background="#BA0C2F"
+                            Foreground="White" Padding="10,6" FontSize="12"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Secondary Toolbar: Document Info -->
+        <Border Grid.Row="1" Background="#f5f5f5" BorderBrush="#e0e0e0" BorderThickness="0,1,0,1" Padding="15">
+            <StackPanel Orientation="Horizontal" Spacing="20">
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                    <TextBlock Text="Widgets:" FontWeight="Bold" Foreground="#2C3E50"/>
+                    <TextBlock Text="{Binding DocumentWidgets.Count}" Foreground="#555"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                    <TextBlock Text="Status:" FontWeight="Bold" Foreground="#2C3E50"/>
+                    <TextBlock Text="Ready" Foreground="#27AE60"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content Area -->
+        <Grid Grid.Row="2" ColumnDefinitions="220,*,420">
+            
+            <!-- Left Panel: Widget Library -->
+            <Border Grid.Column="0" Background="#F8F9FA" BorderBrush="#DEE2E6" BorderThickness="0,0,1,0">
+                <Grid RowDefinitions="Auto,*">
+                    <Border Grid.Row="0" Background="#001489" Padding="12">
+                        <TextBlock Text="Widget Library" FontSize="14" FontWeight="Bold" 
+                                   Foreground="White"/>
+                    </Border>
+                    
+                    <ScrollViewer Grid.Row="1" Padding="10">
+                        <ItemsControl ItemsSource="{Binding AvailableWidgets}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="White" BorderBrush="#001489" BorderThickness="1" 
+                                            CornerRadius="6" Margin="0,0,0,10" Padding="12"
+                                            Cursor="Hand"
+                                            PointerPressed="OnWidgetClicked">
+                                        <Border.Styles>
+                                            <Style Selector="Border:pointerover">
+                                                <Setter Property="Background" Value="#E8F4F8"/>
+                                            </Style>
+                                        </Border.Styles>
+                                        
+                                        <StackPanel Spacing="5">
+                                            <TextBlock Text="{Binding DisplayName}" FontWeight="Bold" 
+                                                       FontSize="13" Foreground="#001489"/>
+                                            <TextBlock Text="{Binding Category}" FontSize="10" 
+                                                       Foreground="#6C757D"/>
+                                            <TextBlock Text="{Binding Description}" FontSize="9" 
+                                                       Foreground="#95A5A6" TextWrapping="Wrap"
+                                                       IsVisible="{Binding Description, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                                        </StackPanel>
+                                        <Border.ContextMenu>
+                                            <ContextMenu IsVisible="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CanCreateWidgets}">
+                                                <MenuItem Header="Edit Widget" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).EditWidgetCommand}" CommandParameter="{Binding}"/>
+                                                <MenuItem Header="Edit Template" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).EditTemplateCommand}" CommandParameter="{Binding}"/>
+                                                <Separator/>
+                                                <MenuItem Header="Delete Widget" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).DeleteWidgetCommand}" CommandParameter="{Binding}"/>
+                                                <MenuItem Header="Delete Template" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).DeleteTemplateCommand}" CommandParameter="{Binding}"/>
+                                            </ContextMenu>
+                                        </Border.ContextMenu>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <!-- Center: Document Canvas -->
+            <Border Grid.Column="1" Background="#FFFFFF" BorderBrush="#DEE2E6" BorderThickness="1,0,1,0">
+                <Grid RowDefinitions="Auto,*">
+                    <Border Grid.Row="0" Background="#F8F9FA" Padding="15,12" BorderBrush="#DEE2E6" BorderThickness="0,0,0,1">
+                        <TextBlock Text="Document Canvas" FontSize="14" FontWeight="Bold" 
+                                   Foreground="#001489"/>
+                    </Border>
+                    
+                    <ScrollViewer x:Name="DocumentCanvas" Grid.Row="1" 
+                                  DragDrop.AllowDrop="True">
+                        <ItemsControl ItemsSource="{Binding DocumentWidgets}" Margin="15">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="#f9f9f9" 
+                                            BorderBrush="#001489" BorderThickness="0,0,0,3" 
+                                            Padding="15" Margin="0,0,0,12" CornerRadius="4">
+                                        <Grid RowDefinitions="Auto,Auto,Auto">
+                                            <!-- Header Row -->
+                                            <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,10">
+                                                <TextBlock Grid.Column="0" Text="{Binding DisplayName}" FontWeight="Bold" 
+                                                           FontSize="13" Foreground="#001489"/>
+                                                
+                                                <StackPanel Grid.Column="1" Spacing="4" Orientation="Horizontal">
+                                                    <Button Content="↑" 
+                                                            Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).MoveWidgetUpCommand}"
+                                                            CommandParameter="{Binding}"
+                                                            IsVisible="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CanReorderWidgets}"
+                                                            Background="#3498DB" Foreground="White"
+                                                            Width="28" Height="28" FontSize="11" Padding="0" CornerRadius="4"/>
+                                                    <Button Content="↓" 
+                                                            Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).MoveWidgetDownCommand}"
+                                                            CommandParameter="{Binding}"
+                                                            IsVisible="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CanReorderWidgets}"
+                                                            Background="#3498DB" Foreground="White"
+                                                            Width="28" Height="28" FontSize="11" Padding="0" CornerRadius="4"/>
+                                                    <Button Content="✕" 
+                                                            Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).RemoveWidgetCommand}"
+                                                            CommandParameter="{Binding}"
+                                                            Background="#E74C3C" Foreground="White"
+                                                            Width="28" Height="28" FontSize="11" Padding="0" CornerRadius="4"/>
+                                                </StackPanel>
+                                            </Grid>
+                                            
+                                            <!-- Fields Editor -->
+                                            <ItemsControl Grid.Row="1" ItemsSource="{Binding Definition.Fields}" Margin="0,5">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Margin="0,0,0,8">
+                                                            <TextBlock Text="{Binding Label}" FontSize="11" FontWeight="SemiBold" Foreground="#495057" Margin="0,0,0,3"/>
+                                                            <TextBox Text="{Binding DefaultValue}" 
+                                                                     PropertyChanged="OnFieldValueChanged"
+                                                                     Background="White" Padding="8" 
+                                                                     BorderBrush="#CED4DA" BorderThickness="1" CornerRadius="3"/>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <!-- Right Panel: Live Preview -->
+            <Border Grid.Column="2" Background="#F8F9FA" BorderBrush="#DEE2E6" BorderThickness="1,0,0,0">
+                <Grid RowDefinitions="Auto,Auto,*">
+                    <Border Grid.Row="0" Background="#001489" Padding="12">
+                        <TextBlock Text="Live Preview" FontSize="14" FontWeight="Bold" 
+                                   Foreground="White"/>
+                    </Border>
+                    
+                    <Border Grid.Row="1" Background="#E8F4F8" Padding="10" BorderBrush="#DEE2E6" BorderThickness="0,0,0,1">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Real-time HTML rendering" 
+                                       FontSize="10" Foreground="#6C757D" TextWrapping="Wrap"/>
+                            <Button Content="🌐 Open in Browser" Command="{Binding PreviewInBrowserCommand}"
+                                    Background="#3498DB" Foreground="White" Padding="12,6" CornerRadius="4"
+                                    HorizontalAlignment="Left" FontSize="12"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <controls:HtmlPreviewControl x:Name="HtmlPreview" Grid.Row="2" />
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

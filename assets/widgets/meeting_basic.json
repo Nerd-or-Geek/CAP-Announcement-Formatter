@@ -1,0 +1,57 @@
+{
+  "id": "meeting_basic",
+  "displayName": "Meeting Announcement",
+  "category": "Meetings",
+  "description": "Basic meeting announcement with title, date, time, and location",
+  "icon": "meeting.png",
+  "template": "meeting.html",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "id": "title",
+      "type": "String",
+      "label": "Meeting Title",
+      "required": true,
+      "placeholder": "e.g., Weekly Team Briefing",
+      "helpText": "Enter a clear, descriptive title for the meeting"
+    },
+    {
+      "id": "date",
+      "type": "Date",
+      "label": "Date",
+      "required": true,
+      "helpText": "Select the meeting date"
+    },
+    {
+      "id": "time",
+      "type": "String",
+      "label": "Time",
+      "required": true,
+      "placeholder": "e.g., 09:00 - 10:00",
+      "helpText": "Enter the meeting time"
+    },
+    {
+      "id": "location",
+      "type": "String",
+      "label": "Location",
+      "required": true,
+      "placeholder": "e.g., Conference Room A",
+      "helpText": "Specify where the meeting will take place"
+    },
+    {
+      "id": "details",
+      "type": "Multiline",
+      "label": "Details",
+      "required": false,
+      "placeholder": "Additional meeting details...",
+      "helpText": "Add agenda items, special instructions, or other relevant information"
+    },
+    {
+      "id": "attendanceRequired",
+      "type": "Boolean",
+      "label": "Attendance Required",
+      "required": false,
+      "defaultValue": "false"
+    }
+  ]
+}
